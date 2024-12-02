@@ -7,25 +7,25 @@ import {
 import { addressValidationSchema } from "../../validations/index.js";
 import { authGuard, roleGuard } from "../../Guards/index.js";
 
-export const feedbackRouter = express.Router();
+export const addressRouter = express.Router();
 
-feedbackRouter.get("/", addressController.getAlladdress);
-feedbackRouter.get("/:id", addressController.getAdressById);
-feedbackRouter.post(
+addressRouter.get("/", addressController.getAlladdress);
+addressRouter.get("/:id", addressController.getAdressById);
+addressRouter.post(
   "/",
   authGuard,
   roleGuard(["user", "admin", "manager"]),
   CheckAddressDatamiddleware(addressValidationSchema),
   addressController.createAddress
 );
-feedbackRouter.put(
+addressRouter.put(
   "/:id",
   authGuard,
   roleGuard(["user", "admin", "manager"]),
   UpdateAddressDatamiddleware(addressValidationSchema),
   addressController.updateAddress
 );
-feedbackRouter.delete(
+addressRouter.delete(
   "/:id",
   authGuard,
   roleGuard(["user", "admin", "manager"]),

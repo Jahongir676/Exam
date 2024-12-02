@@ -7,24 +7,24 @@ import {
 import { ProductValidationSchema } from "../../validations/index.js";
 import { authGuard, roleGuard } from "../../Guards/index.js";
 
-export const paymentRouter = express.Router();
+export const productsRouter = express.Router();
 
-paymentRouter.get("/", productsConttroller.getAllProducts);
-paymentRouter.get("/:id", productsConttroller.getProductById);
-paymentRouter.post(
+productsRouter.get("/", productsConttroller.getAllProducts);
+productsRouter.get("/:id", productsConttroller.getProductById);
+productsRouter.post(
   "/",
   authGuard,
   roleGuard(["user", "admin", "manager"]),
   checkProductDatamiddleare(ProductValidationSchema),
   productsConttroller.createProduct
 );
-paymentRouter.put(
+productsRouter.put(
   "/:id",
   roleGuard(["user", "admin", "manager"]),
   UpdatecheckProductDatamiddleare(ProductValidationSchema),
   productsConttroller.updateProduct
 );
-paymentRouter.delete(
+productsRouter.delete(
   "/:id",
   authGuard,
   roleGuard(["user", "admin", "manager"]),

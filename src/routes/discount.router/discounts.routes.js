@@ -7,24 +7,24 @@ import {
 import { discountValidationSchema } from "../../validations/index.js";
 import { authGuard, roleGuard } from "../../Guards/index.js";
 
-export const paymentRouter = express.Router();
+export const discountRouter = express.Router();
 
-paymentRouter.get("/", discountsController.getAllDiscounts);
-paymentRouter.get("/:id", discountsController.getDiscountsById);
-paymentRouter.post(
+discountRouter.get("/", discountsController.getAllDiscounts);
+discountRouter.get("/:id", discountsController.getDiscountsById);
+discountRouter.post(
   "/",
   authGuard,
   roleGuard(["user", "admin", "manager"]),
   CheckdiscountDatamiddleware(discountValidationSchema),
   discountsController.createDiscount
 );
-paymentRouter.put(
+discountRouter.put(
   "/:id",
   roleGuard(["user", "admin", "manager"]),
   UpdateCheckdiscountDatamiddleware(discountValidationSchema),
   discountsController.updateDiscount
 );
-paymentRouter.delete(
+discountRouter.delete(
   "/:id",
   authGuard,
   roleGuard(["user", "admin", "manager"]),
